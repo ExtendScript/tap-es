@@ -1,0 +1,15 @@
+{
+  "name": "tap-es",
+  "version": "0.1.0",
+  "description": "tap-extendscript to markdown",
+  "main": "tap-es.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Bruno Hersft",
+  "license": "ISC",
+  "dependencies": {
+    "estktap": "git+https://github.com/GitBruno/estktap.git"
+  }
+}
