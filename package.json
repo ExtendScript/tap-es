@@ -1,15 +1,32 @@
 {
   "name": "tap-es",
   "version": "0.1.0",
-  "description": "tap-extendscript to markdown",
+  "description": "extendscript tap runner and reporter",
   "main": "tap-es.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "adobe",
+    "extendscript",
+    "test",
+    "markdown",
+    "tape",
+    "tap"
+  ],
   "author": "Bruno Hersft",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/GitBruno/tap-es.git"
+  },
+  "homepage": "https://github.com/GitBruno/tap-es#readme",
+  "license": "MIT",
   "dependencies": {
-    "estktap": "git+https://github.com/GitBruno/estktap.git"
+    "estktap": "git+https://github.com/GitBruno/estktap.git",
+    "gulp-tape": "^1.0.0",
+    "tap-markdown": "git+https://github.com/GitBruno/tap-markdown.git"
+  },
+  "devDependencies": {
+    "tape": "^4.9.0"
   }
 }
