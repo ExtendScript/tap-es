@@ -1,4 +1,6 @@
-// The tapestry
+// tap-es
+
+var builds = [];
 
 /*
   A helper function to clean array reference
@@ -121,7 +123,6 @@ var get = exports.get = function() {
   return deck.get();
 };
 
-
 /*
   Function: Test Generator
   -----
@@ -134,6 +135,7 @@ var add = exports.add = function( scripts, targets, comparator) {
   deck.add( new Test( scripts, targets, comparator ) );
 };
 
+
 /*
   Function: Test Runner
   -----
@@ -142,14 +144,32 @@ var add = exports.add = function( scripts, targets, comparator) {
 */
 var run = exports.run = function( output ) {
   if( output === undefined ) throw new Error('output is undefined');
-  var R = this;
+  var R = this, glob = require("glob"), isGlob = require('is-glob');
+
   // String: Path to results.md
   R.output = String( output );
   R.tests = deck.get();
   
-  // We need to bundle tests here
+  var x = R.tests.length;
+  
+  builds = []; // Make sure it's empty
+  
+  while(x--) {
+    var test = R.tests[x];
+    var s = test.scripts.length;
+    while(s--) {
+      if( isGlob(test.scripts[s]) ) {
+        test.scripts[s] = glob.sync(test.scripts[s]);
+      };
+      builds.push({script: test.scripts[s], targets: test.targets, comparator: test.comparator});
+    };
+  };
 
-  deck.reset();
+  var shell = require('shelljs');
+
+  shell.exec('tape ./run-tap.js | tap-markdown')
+    .to(R.output);
+
 };
 
 //----------------------------------------------------------------------
