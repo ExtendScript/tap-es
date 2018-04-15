@@ -39,7 +39,7 @@ function keepInstanceOf( inst, arr ) {
   Param comparator : Number, String, Boolean, Function: Test comparator
 
 */
-function Test( tests, targets, comparator ) {
+function Test( scripts, targets, comparator ) {
   var _Test = this;
   // Object must be created with new
   if( !(_Test instanceof Test) ){
@@ -47,7 +47,7 @@ function Test( tests, targets, comparator ) {
   };
 
   // String: Path to JSX script
-  _Test.tests: newStringArray( tests );
+  _Test.scripts = newStringArray( scripts );
 
   // Array: of target strings
   _Test.targets = newStringArray( targets );
@@ -112,17 +112,26 @@ var reset = exports.reset = function() {
   deck.reset();
 };
 
+/*
+  Function: Get all tests loaded in the deck
+  -----
+  Returns: Array of Test objects 
+*/
+var get = exports.get = function() {
+  return deck.get();
+};
+
 
 /*
   Function: Test Generator
   -----
-  Param tests      : String, Array: [list of] Path to script, or glob path
+  Param scripts    : String, Array: [list of] Path to script, or glob path
   Param targets    : Array, String: [list of] Adobe application target
   Param comparator : Number, String, Boolean, Function: Test comparator
 
 */
-var add = exports.add = function( tests, targets, comparator) {
-  deck.add( new Test( tests, targets, comparator ) );
+var add = exports.add = function( scripts, targets, comparator) {
+  deck.add( new Test( scripts, targets, comparator ) );
 };
 
 /*
@@ -132,12 +141,13 @@ var add = exports.add = function( tests, targets, comparator) {
 
 */
 var run = exports.run = function( output ) {
+  if( output === undefined ) throw new Error('output is undefined');
   var R = this;
   // String: Path to results.md
   R.output = String( output );
   R.tests = deck.get();
   
-  console.log("____________________________ EXPORT! " + R.tests + " ____________________________")
+  // We need to bundle tests here
 
   deck.reset();
 };
