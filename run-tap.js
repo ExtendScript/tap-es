@@ -1,27 +1,40 @@
 // The tapestry
 
-var os = require('os');
-var estktap = require('estktap');
-var test = require('tape');
-
-var bLen = builds.length, bI = 0;
-
-test('Test Count',function(t) {
-    t.equal(bLen, 100);
-    t.end();
+// Remove nodePath, scriptpath from argv
+var argv = require('minimist')(process.argv.slice(2),{
+  alias: { b: 'buffer' }
 });
 
-for (bI = 0; bI < bLen; bI++) {
-  var build = builds[bI];
-  var targets = build.targets;
-  var tLen = targets.length, tI = 0;
-  for (tI = 0; tI < tLen; tI++) { 
-    var myTarget = targets.pop();
-    test(os.type() + ' ' + myTarget + ' filename here',function(t) {
-      estktap(os.type() + ' ' + myTarget + ' filename here', build.script, build.comparator, [myTarget]);
-      t.end();
-    });
-  };
+var unescapeStr = require('js-string-escape');
+
+var testDeck = eval( eval('"' + unescapeStr(argv.buffer) + '"') );
+
+if( typeof testDeck !== 'object' ) {
+  throw "Could not read buffer from argument vector";
 };
 
-tapes.deck.reset();
+var os = require('os');
+var path = require('path');
+var test = require('tape-catch');
+var estktap = require('estktap');
+
+var dLen = testDeck.length, di = 0;
+for (di = 0; di < dLen; di++) {
+  var tests = testDeck[di];
+  var targets = tests.targets;
+  var comparator = tests.comparator;
+  var scripts = tests.scripts;
+  var slen = scripts.length, si = 0;
+  for (si = 0; si < slen; si++) { 
+    var script = scripts[si];
+    var scriptName = path.basename(script, path.extname(script));
+    var tlen = targets.length, ti = 0;
+    for (ti = 0; ti < tlen; ti++) { 
+      var myTarget = targets[ti];
+      test(os.type() + ' ' + myTarget + ' ' + scriptName, function(t) {
+        estktap(os.type() + ' ' + myTarget + ' ' + scriptName, script, comparator, [myTarget]);
+        t.end();
+      });
+    };
+  };
+};

@@ -144,31 +144,30 @@ var add = exports.add = function( scripts, targets, comparator) {
 */
 var run = exports.run = function( output ) {
   if( output === undefined ) throw new Error('output is undefined');
-  var R = this, glob = require("glob"), isGlob = require('is-glob');
+  var glob = require("glob"), isGlob = require('is-glob');
+  var shell = require('shelljs'), serialize = require('serialize-javascript'), escapeStr = require('js-string-escape')
+  var output = String( output ), tests = deck.get(), flatDeck = [];
 
-  // String: Path to results.md
-  R.output = String( output );
-  R.tests = deck.get();
-  
-  var x = R.tests.length;
-  
-  builds = []; // Make sure it's empty
-  
+  var x = tests.length;
   while(x--) {
-    var test = R.tests[x];
+    var test = tests[x];
     var s = test.scripts.length;
     while(s--) {
+      var scripts = [];
       if( isGlob(test.scripts[s]) ) {
-        test.scripts[s] = glob.sync(test.scripts[s]);
+        scripts = glob.sync(test.scripts[s]);
+      } else {
+        scripts.push(test.scripts[s]);
       };
-      builds.push({script: test.scripts[s], targets: test.targets, comparator: test.comparator});
+      flatDeck.push({scripts: scripts, targets: test.targets, comparator: test.comparator});
     };
   };
-
-  var shell = require('shelljs');
-
-  shell.exec('tape ./run-tap.js | tap-markdown')
-    .to(R.output);
+  
+  // console.log( escapeStr(serialize(flatDeck,{unsafe:true})) );
+  var cmd = 'node ./run-tap.js -b "' + escapeStr(serialize(flatDeck,{unsafe:true})) + '" | tap-markdown';
+  //var cmd = 'node ./run-tap.js -b "' + escapeStr(serialize(flatDeck,{unsafe:true})) + '"';
+  
+  shell.exec(cmd).to(output);
 
 };
 
