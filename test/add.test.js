@@ -1,10 +1,19 @@
 var tapes = require("../tap-es.js"); tapes.reset();
-var test  = require('tape-catch');
+var directives = require("./testDirectives.js");
+var path = require('path');
+var dot = path.resolve(__dirname);
 
-tapes.add(['test1.jsx','test2.jsx'],['indesign-12',"indesign-13"],function(){return 'works'});
+var targets = directives.indesign;
+var expectedResult = { x: 0, y: 0, width: 3000, height: 5000 };
 
-var result = tapes.get();
+tapes.add([dot+'/fixtures/es_test.jsx'], targets, function(d){
+    t.deepEqual(d,{x:0, y:0, width:3000, height: 5000});
+});
 
+tapes.run(dot+'/add.test.md');
+
+/* Test content of add.test.md here 
+var test = require('tape-catch');
 test('testing add()', function (t) {
   t.equal(result.length, 1);
   t.equal(result[0].scripts[1], 'test2.jsx');
@@ -12,3 +21,4 @@ test('testing add()', function (t) {
   t.equal(result[0].comparator(), 'works');
   t.end();
 });
+*/

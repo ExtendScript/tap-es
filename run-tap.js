@@ -16,23 +16,20 @@ var path = require('path');
 var test = require('tape-catch');
 var estktap = require('estktap');
 
-var dLen = testDeck.length, di = 0;
-for (di = 0; di < dLen; di++) {
-  var tests = testDeck[di];
+var d = testDeck.length;
+while (d--) {
+  var tests = testDeck[d];
   var targets = tests.targets;
   var comparator = tests.comparator;
   var scripts = tests.scripts;
-  var slen = scripts.length, si = 0;
-  for (si = 0; si < slen; si++) { 
-    var script = scripts[si];
+  var s = scripts.length;
+  while (s--) { 
+    var script = scripts[s];
     var scriptName = path.basename(script, path.extname(script));
-    var tlen = targets.length, ti = 0;
-    for (ti = 0; ti < tlen; ti++) { 
-      var myTarget = targets[ti];
-      test(os.type() + ' ' + myTarget + ' ' + scriptName, function(t) {
-        estktap(os.type() + ' ' + myTarget + ' ' + scriptName, script, comparator, [myTarget]);
-        t.end();
-      });
+    var x = targets.length;
+    while (x--) {
+      var myTarget = targets[x];
+      estktap(os.type() + ' ' + myTarget + ' ' + scriptName, script, comparator, [myTarget]);
     };
   };
 };

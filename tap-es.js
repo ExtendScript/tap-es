@@ -1,7 +1,5 @@
 // tap-es
 
-var builds = [];
-
 /*
   A helper function to clean array reference
   -----
@@ -62,6 +60,8 @@ function Test( scripts, targets, comparator ) {
     case 'function':
       _Test.comparator = comparator;
       break;
+    case 'object':
+      console.log('WARNING: type of comparator cannot be set to objects, using default instead.');
     default:
       _Test.comparator = true;
       break;
@@ -164,18 +164,17 @@ var run = exports.run = function( output ) {
   if( output === undefined ) console.log('TAP-ES: No output defined');
   var shell = require('shelljs'), serialize = require('serialize-javascript');
   var output = String( output ), tests = deck.get(), flatDeck = [];
-
+  
   var x = tests.length;
   while(x--) {
     var test = tests[x];
     var s = test.scripts.length;
     while(s--) {
       var scripts = resolveGlob(test.scripts[s]);
-
       flatDeck.push({scripts: scripts, targets: test.targets, comparator: test.comparator});
     };
   };
-  
+
   var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
 
   shell.exec(cmd).exec("tap-markdown").to(output);

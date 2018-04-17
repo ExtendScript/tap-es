@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+.*.jsx
 .venv/
 build-node-venv.sh
 node_modules/
