@@ -124,6 +124,24 @@ var get = exports.get = function() {
 };
 
 /*
+  Function: Get all tests loaded in the deck
+  -----
+  Returns: Array of paths
+  // Note I have exported this function mainly as a hook for testing
+*/
+var glob = require("glob"), isGlob = require('is-glob');
+
+var resolveGlob = exports.resolveGlob = function( pathStr ) {
+  var filePaths = [];
+  if( isGlob( pathStr ) ) {
+    filePaths = glob.sync( pathStr ).slice(0);
+  } else {
+    filePaths.push( pathStr );
+  };
+  return filePaths;
+};
+
+/*
   Function: Test Generator
   -----
   Param scripts    : String, Array: [list of] Path to script, or glob path
@@ -143,9 +161,8 @@ var add = exports.add = function( scripts, targets, comparator) {
 
 */
 var run = exports.run = function( output ) {
-  if( output === undefined ) throw new Error('output is undefined');
-  var glob = require("glob"), isGlob = require('is-glob');
-  var shell = require('shelljs'), serialize = require('serialize-javascript'), escapeStr = require('js-string-escape')
+  if( output === undefined ) console.log('TAP-ES: No output defined');
+  var shell = require('shelljs'), serialize = require('serialize-javascript');
   var output = String( output ), tests = deck.get(), flatDeck = [];
 
   var x = tests.length;
@@ -153,21 +170,15 @@ var run = exports.run = function( output ) {
     var test = tests[x];
     var s = test.scripts.length;
     while(s--) {
-      var scripts = [];
-      if( isGlob(test.scripts[s]) ) {
-        scripts = glob.sync(test.scripts[s]);
-      } else {
-        scripts.push(test.scripts[s]);
-      };
+      var scripts = resolveGlob(test.scripts[s]);
+
       flatDeck.push({scripts: scripts, targets: test.targets, comparator: test.comparator});
     };
   };
   
-  // console.log( escapeStr(serialize(flatDeck,{unsafe:true})) );
-  var cmd = 'node ./run-tap.js -b "' + escapeStr(serialize(flatDeck,{unsafe:true})) + '" | tap-markdown';
-  //var cmd = 'node ./run-tap.js -b "' + escapeStr(serialize(flatDeck,{unsafe:true})) + '"';
-  
-  shell.exec(cmd).to(output);
+  var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
+
+  shell.exec(cmd).exec("tap-markdown").to(output);
 
 };
 

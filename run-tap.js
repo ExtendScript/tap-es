@@ -5,9 +5,7 @@ var argv = require('minimist')(process.argv.slice(2),{
   alias: { b: 'buffer' }
 });
 
-var unescapeStr = require('js-string-escape');
-
-var testDeck = eval( eval('"' + unescapeStr(argv.buffer) + '"') );
+var testDeck = eval(unescape(decodeURI(argv.buffer)));
 
 if( typeof testDeck !== 'object' ) {
   throw "Could not read buffer from argument vector";
