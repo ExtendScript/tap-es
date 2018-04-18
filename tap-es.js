@@ -39,13 +39,16 @@ function keepInstanceOf( inst, arr ) {
   Param comparator : Number, String, Boolean, Function: Test comparator
 
 */
-function Test( scripts, targets, comparator ) {
+function Test( description, scripts, targets, comparator ) {
   var _Test = this;
   // Object must be created with new
   if( !(_Test instanceof Test) ){
     return new Test( tests, targets, comparator );
   };
 
+  // String: Test description
+  _Test.description = String( description );
+  
   // String: Path to JSX script
   _Test.scripts = newStringArray( scripts );
 
@@ -149,8 +152,8 @@ var resolveGlob = exports.resolveGlob = function( pathStr ) {
   Param comparator : Number, String, Boolean, Function: Test comparator
 
 */
-var add = exports.add = function( scripts, targets, comparator) {
-  deck.add( new Test( scripts, targets, comparator ) );
+var add = exports.add = function( description, scripts, targets, comparator) {
+  deck.add( new Test( description, scripts, targets, comparator ) );
 };
 
 
@@ -171,7 +174,7 @@ var run = exports.run = function( output ) {
     var s = test.scripts.length;
     while(s--) {
       var scripts = resolveGlob(test.scripts[s]);
-      flatDeck.push({scripts: scripts, targets: test.targets, comparator: test.comparator});
+      flatDeck.push({description: test.description, scripts: scripts, targets: test.targets, comparator: test.comparator});
     };
   };
 

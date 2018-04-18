@@ -11,25 +11,23 @@ if( typeof testDeck !== 'object' ) {
   throw "Could not read buffer from argument vector";
 };
 
-var os = require('os');
-var path = require('path');
-var test = require('tape-catch');
+var os = require('os').type();
 var estktap = require('estktap');
 
 var d = testDeck.length;
 while (d--) {
   var tests = testDeck[d];
+  var descr = tests.description;
   var targets = tests.targets;
   var comparator = tests.comparator;
   var scripts = tests.scripts;
   var s = scripts.length;
   while (s--) { 
     var script = scripts[s];
-    var scriptName = path.basename(script, path.extname(script));
     var x = targets.length;
     while (x--) {
       var myTarget = targets[x];
-      estktap(os.type() + ' ' + myTarget + ' ' + scriptName, script, comparator, [myTarget]);
+      estktap(os + ' ' + myTarget + ': ' + descr, script, comparator, [myTarget]);
     };
   };
 };
