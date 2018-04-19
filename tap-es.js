@@ -132,9 +132,9 @@ var get = exports.get = function() {
   Returns: Array of paths
   // Note I have exported this function mainly as a hook for testing
 */
-var glob = require("glob"), isGlob = require('is-glob');
 
 var resolveGlob = exports.resolveGlob = function( pathStr ) {
+  var glob = require("glob"), isGlob = require('is-glob');
   var filePaths = [];
   if( isGlob( pathStr ) ) {
     filePaths = glob.sync( pathStr ).slice(0);
@@ -180,7 +180,7 @@ var run = exports.run = function( output ) {
 
   var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
 
-  shell.exec(cmd).exec("tap-markdown").to(output);
+  shell.exec(cmd).exec("tap-markdown", {silent:true}).to(output);
 
 };
 
