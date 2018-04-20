@@ -27,7 +27,7 @@
     "estktap": "git+https://github.com/ESCPP/estktap.git",
     "glob": "^7.1.2",
     "is-glob": "^4.0.0",
-    "serialize-javascript": "https://github.com/ES-CPP/serialize-javascript.git",
+    "serialize-javascript": "^1.5.0",
     "shelljs": "^0.8.1",
     "tap-markdown": "git+https://github.com/ES-CPP/tap-markdown.git"
   },
