@@ -44,8 +44,12 @@ Example using multiple files and multiple targets:
 
 ## Running the tests
 
-Now we have created the tests, run them and save output to markdown and console:
+After having added the tests, we can use the `run()` command to run the tests and pipe the output to file (Markdown) and console:
 
     tap-es.run( 'result.md' )
 
-> Running a test resets tap-es
+> The run command resets tap-es   
+
+Run the test file with `node run tests.js` or `tape run tests.js`
+
+See [example](test/add.test.report.js)
