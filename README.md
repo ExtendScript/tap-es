@@ -1,9 +1,9 @@
 # tap-es
 
 [![version](https://img.shields.io/npm/v/tap-es.svg)](https://www.npmjs.org/package/tap-es)
-[![status](https://travis-ci.org/ES-CPP/tap-es.svg)](https://travis-ci.org/ES-CPP/tap-es)
-[![dependencies](https://david-dm.org/ES-CPP/tap-es.svg)](https://david-dm.org/ES-CPP/tap-es)
-[![devDependencies](https://david-dm.org/ES-CPP/tap-es/dev-status.svg)](https://david-dm.org/ES-CPP/tap-es#info=devDependencies)
+[![status](https://travis-ci.org/ESCPP/tap-es.svg)](https://travis-ci.org/ESCPP/tap-es)
+[![dependencies](https://david-dm.org/ESCPP/tap-es.svg)](https://david-dm.org/ESCPP/tap-es)
+[![devDependencies](https://david-dm.org/ESCPP/tap-es/dev-status.svg)](https://david-dm.org/ESCPP/tap-es#info=devDependencies)
 
 
 Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/ExtendScript/estktap) and [tap-markdown](https://github.com/Hypercubed/tap-markdown). It creates a tape test bundler, generator and reporter that takes a test (or a set of tests) and pipes them to multiple app targets/versions. The results are saved to a single report.
