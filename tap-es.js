@@ -181,6 +181,7 @@ var run = exports.run = function( output ) {
   var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
 
   shell.exec(cmd).exec("tap-markdown", {silent:true}).to(output);
+  reset();
 
 };
 
