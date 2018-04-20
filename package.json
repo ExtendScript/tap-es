@@ -1,10 +1,11 @@
 {
   "name": "tap-es",
-  "version": "0.2.0",
+  "version": "1.0.0-pre",
   "description": "extendscript tap runner and reporter",
   "main": "tap-es.js",
   "scripts": {
-    "test": "tape cover test/*test.js | tap-markdown > test/results.md",
+    "test": "tape cover test/*.test.js",
+    "test-es": "tape test/*.estest.js | tap-markdown > test/results.md && cat test/results.md",
     "env": "if [ ! -f ./build-node-venv.sh ]; then curl https://raw.githubusercontent.com/ES-CPP/bashnips/master/build-node-venv.sh > ./build-node-venv.sh; fi; chmod +x ./build-node-venv.sh && ./build-node-venv.sh && npm install"
   },
   "keywords": [

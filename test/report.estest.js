@@ -28,7 +28,6 @@ while(s--) {
         return str.match(regexp) !== null; 
       };
       var report = fs.readFileSync(reportPath,'utf8')+'';
-      console.log(report);
       t.equal(reportValid(report),true,'Summary report validates');
       t.equal(stderr,'','empty stderr');
       t.end();
