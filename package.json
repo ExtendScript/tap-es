@@ -19,9 +19,9 @@
   "author": "Bruno Hersft",
   "repository": {
     "type": "git",
-    "url": "git://github.com/GitBruno/tap-es.git"
+    "url": "git://github.com/ESCPP/tap-es.git"
   },
-  "homepage": "https://github.com/GitBruno/tap-es#readme",
+  "homepage": "https://github.com/ESCPP/tap-es#readme",
   "license": "MIT",
   "dependencies": {
     "estktap": "git+https://github.com/ESCPP/estktap.git",
@@ -29,7 +29,7 @@
     "is-glob": "^4.0.0",
     "serialize-javascript": "^1.5.0",
     "shelljs": "^0.8.1",
-    "tap-markdown": "git+https://github.com/ES-CPP/tap-markdown.git"
+    "tap-markdown": "git+https://github.com/ESCPP/tap-markdown.git"
   },
   "devDependencies": {
     "tape": "^4.9.0",
