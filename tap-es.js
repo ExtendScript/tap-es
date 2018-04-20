@@ -164,10 +164,9 @@ var add = exports.add = function( description, scripts, targets, comparator) {
 
 */
 var run = exports.run = function( output ) {
-  if( output === undefined ) console.log('TAP-ES: No output defined');
   var shell = require('shelljs'), serialize = require('serialize-javascript');
-  var output = String( output ), tests = deck.get(), flatDeck = [];
-  
+  var tests = deck.get(), flatDeck = [];
+
   var x = tests.length;
   while(x--) {
     var test = tests[x];
@@ -180,7 +179,12 @@ var run = exports.run = function( output ) {
 
   var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
 
-  shell.exec(cmd).exec("tap-markdown", {silent:true}).to(output);
+  if( output === undefined ) {
+    shell.exec(cmd);
+  } else {
+    shell.exec(cmd).exec("tap-markdown", {silent:true}).to( String(output) );
+  };
+
   reset();
 
 };

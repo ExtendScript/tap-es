@@ -6,12 +6,21 @@
 [![devDependencies](https://david-dm.org/ESCPP/tap-es/dev-status.svg)](https://david-dm.org/ESCPP/tap-es#info=devDependencies)
 
 
-Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/ExtendScript/estktap) and [tap-markdown](https://github.com/Hypercubed/tap-markdown). It creates a tape test bundler, generator and reporter that takes a test (or a set of tests) and pipes them to multiple app targets/versions. The results are saved to a single report.
+Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/ExtendScript/estktap). It adds a test bundler, generator and reporter that takes a test (or a set of tests) and pipes them to multiple app targets/versions and outputs a single report.
+
+> When given an output file the report will be written in [tap-markdown](https://github.com/Hypercubed/tap-markdown) syntax.
 
 ## install
 
     npm install tap-es --save-dev
 
+## create a test
+
+Add a single line to the end of your test file:
+
+    $.write( result );
+
+Please read the [estktap guide](https://github.com/nbqx/estktap#readme) for more information.
 
 ## adding and generating tests
 
@@ -28,17 +37,15 @@ Example using multiple files and multiple targets:
     // Generates 4 tests
     tap-es.add(['test1.jsx','test2.jsx'], [indesign-13,photoshop-18])
 
-We can also pass [glob](https://github.com/isaacs/node-glob) strings:
+[glob](https://github.com/isaacs/node-glob) patterns are supported:
 
-    tap-es.add('./test/*.indd.jsx', [indesign-12,indesign-13] )
-
-> Please read the [estktap guide](https://github.com/nbqx/estktap#readme) on how to set up test files.
+    tap-es.add('test/*.indd.jsx', [indesign-12,indesign-13] )
 
 
 ## Running the tests
 
 Now we have created the tests, run them and save output to markdown and console:
 
-    tap-es.run( './result.md' )
+    tap-es.run( 'result.md' )
 
-> Running a test also resets tap-es
+> Running a test resets tap-es
