@@ -1,34 +1,22 @@
 // tap-es
 
 /*
-  A helper function to clean array reference
+  A helper function to clean array reference and type of content
   -----
-  Param arr : Array, String
+  Param arr  : Array to be de-referenced
+  Param inst : Type of content  
 
 */
-function newStringArray( arr ) {
-  // Clean array reference and make sure tests is type of array
-  return (Array.isArray(arr)) ? arr.splice(0) : [String(arr)];
-};
-
-/*
-  A helper function to clean array values by constructor
-  -----
-  Param inst : Instance
-  Param arr  : Array
-
-*/
-function keepInstanceOf( inst, arr ) {
-  // Remove all values that are not instance of param inst
-  if ( !Array.isArray(arr) ) return [];
-
-  var i = arr.length;
+function cleanArray( arr, inst ) {
+  // Clean array reference and make sure arr is type of array
+  var a = (Array.isArray(arr)) ? arr.splice(0) : [arr];
+  var i = a.length;
   while (i--) {
-    if (! arr[i] instanceof inst) { 
-      arr.splice(i, 1);
+    if (! a[i] instanceof inst) { 
+      a.splice(i, 1);
     };
   };
-  return arr;
+  return a;
 };
 
 /*
@@ -50,10 +38,10 @@ function Test( description, scripts, targets, comparator ) {
   _Test.description = String( description );
   
   // String: Path to JSX script
-  _Test.scripts = newStringArray( scripts );
+  _Test.scripts = cleanArray( scripts, String );
 
   // Array: of target strings
-  _Test.targets = newStringArray( targets );
+  _Test.targets = cleanArray( targets, String );
 
   // Parse test comparator
   switch (typeof comparator) {
@@ -90,7 +78,7 @@ function Deck( tests ) {
 
   _Deck.add = function( tests ) {
     if ( Array.isArray(tests) ){
-      _Deck.tests.concat(keepInstanceOf( Test, tests.slice(0) ));
+      _Deck.tests.concat(cleanArray( Test, tests.slice(0) ));
     } else if(tests instanceof Test) {
       _Deck.tests.push(tests);
     };
