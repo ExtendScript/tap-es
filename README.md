@@ -1,12 +1,12 @@
 # tap-es
 
 [![version](https://img.shields.io/npm/v/tap-es.svg)](https://www.npmjs.org/package/tap-es)
-[![status](https://travis-ci.org/ESCPP/tap-es.svg)](https://travis-ci.org/ESCPP/tap-es)
-[![dependencies](https://david-dm.org/ESCPP/tap-es.svg)](https://david-dm.org/ESCPP/tap-es)
-[![devDependencies](https://david-dm.org/ESCPP/tap-es/dev-status.svg)](https://david-dm.org/ESCPP/tap-es#info=devDependencies)
+[![status](https://travis-ci.org/ExtendScript/tap-es.svg)](https://travis-ci.org/ExtendScript/tap-es)
+[![dependencies](https://david-dm.org/ExtendScript/tap-es.svg)](https://david-dm.org/ExtendScript/tap-es)
+[![devDependencies](https://david-dm.org/ExtendScript/tap-es/dev-status.svg)](https://david-dm.org/ExtendScript/tap-es#info=devDependencies)
 
 
-Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/ExtendScript/estktap). It adds a test bundler, generator and reporter that takes a test (or a set of tests) and pipes them to multiple app targets/versions and outputs a single report.
+Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/nbqx/estktap). It adds a test bundler, generator and reporter that takes a test (or a set of tests) and pipes them to multiple app targets/versions and outputs a single report.
 
 > When given an output file the report will be written in [tap-markdown](https://github.com/Hypercubed/tap-markdown) syntax.
 
