@@ -165,7 +165,7 @@ var run = exports.run = function( output ) {
     };
   };
 
-  var cmd = 'node ./run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
+  var cmd = 'node '+ __dirname +'/run-tap.js -b "' + encodeURI(escape(serialize(flatDeck,{unsafe:true}))) + '"';
 
   if( output === undefined ) {
     shell.exec(cmd);
