@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tape cover test/*.test.js",
     "test-es": "tape test/*.estest.js | tap-markdown > test/results.md && cat test/results.md",
-    "env": "if [ ! -f ./build-node-venv.sh ]; then curl https://raw.githubusercontent.com/ES-CPP/bashnips/master/build-node-venv.sh > ./build-node-venv.sh; fi; chmod +x ./build-node-venv.sh && ./build-node-venv.sh && npm install"
+    "env": "if [ ! -f ./build-node-venv.sh ]; then curl https://raw.githubusercontent.com/ESCPP/bashnips/master/build-node-venv.sh > ./build-node-venv.sh; fi; chmod +x ./build-node-venv.sh && ./build-node-venv.sh && npm install"
   },
   "keywords": [
     "adobe",
@@ -19,12 +19,12 @@
   "author": "Bruno Hersft",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ESCPP/tap-es.git"
+    "url": "git://github.com/ExtendScript/tap-es.git"
   },
-  "homepage": "https://github.com/ESCPP/tap-es#readme",
+  "homepage": "https://github.com/ExtendScript/tap-es#readme",
   "license": "MIT",
   "dependencies": {
-    "estktap": "git+https://github.com/ESCPP/estktap.git",
+    "estktap": "git+https://github.com/nbqx/estktap.git",
     "glob": "^7.1.2",
     "is-glob": "^4.0.0",
     "serialize-javascript": "^1.5.0",
