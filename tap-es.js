@@ -1,5 +1,7 @@
 // tap-es
 
+var duration = true;
+
 /*
   A helper function to clean array reference and type of content
   -----
@@ -99,6 +101,10 @@ function Deck( tests ) {
 var exports = {};
 //----------------------------------------------------------------------
 
+var setDuration = exports.setDuration = function( durationBool ) {
+  duration = Boolean(durationBool);
+};
+
 var deck = exports.deck = new Deck();
 
 var reset = exports.reset = function() {
@@ -170,7 +176,7 @@ var run = exports.run = function( output ) {
   if( output === undefined ) {
     shell.exec(cmd);
   } else {
-    shell.exec(cmd).exec("tap-markdown", {silent:true}).to( String(output) );
+    shell.exec(cmd).exec("tap-markdown --duration " + String(duration), {silent:true}).to( String(output) );
   };
 
   reset();
