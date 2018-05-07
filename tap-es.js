@@ -176,7 +176,7 @@ var run = exports.run = function( output ) {
   if( output === undefined ) {
     shell.exec(cmd);
   } else {
-    shell.exec(cmd).exec("tap-markdown --duration " + String(duration), {silent:true}).to( String(output) );
+    shell.exec(cmd).exec("tap-markdown --duration " + String(duration), {silent:true}).to( String(output), {async:true});
   };
 
   reset();
