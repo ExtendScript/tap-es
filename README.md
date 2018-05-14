@@ -42,6 +42,17 @@ Example using multiple files and multiple targets:
     tap-es.add('test/*.indd.jsx', [indesign-12,indesign-13] )
 
 
+## Report Options
+
+We add the duration of the test to the report:
+
+    tap-es.reportDuration(true)
+
+and/or add the file name of the test with:
+
+     tap-es.reportScriptName(true)
+
+
 ## Running the tests
 
 After having added the tests, we can use the `run()` command to run the tests and pipe the output to file (Markdown) and console:

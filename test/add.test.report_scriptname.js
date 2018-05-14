@@ -2,6 +2,7 @@ var tapes = require("../tap-es.js"); tapes.reset();
 var targets = require("./fixtures/directives.js").indesign;
 var d = require('path').resolve(__dirname);
 
+tapes.reportScriptName(true);
 tapes.reportDuration(false);
 
 // Create Test
@@ -12,4 +13,4 @@ tapes.add('Add and run test.', [d+'/fixtures/es_test.jsx'], targets, function(re
 
 // Run test
 // --------
-tapes.run(d+'/add.test.report.md');
+tapes.run(d+'/add.test.report_scriptname.md');

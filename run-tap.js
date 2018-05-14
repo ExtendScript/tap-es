@@ -1,4 +1,5 @@
 // The tapestry
+var path = require('path');
 
 // Remove nodePath, scriptpath from argv
 var argv = require('minimist')(process.argv.slice(2),{
@@ -25,9 +26,13 @@ while (d--) {
   while (s--) { 
     var script = scripts[s];
     var x = targets.length;
+    var scriptName = '';
     while (x--) {
       var myTarget = targets[x];
-      estktap(os + ' ' + myTarget + ': ' + descr, script, comparator, [myTarget]);
+      if(tests.addScriptName) {
+        scriptName = ' ' + path.basename(script);
+      };
+      estktap(os + ' ' + myTarget + scriptName + ': ' + descr, script, comparator, [myTarget]);
     };
   };
 };

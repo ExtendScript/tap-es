@@ -1,6 +1,7 @@
 // tap-es
 
 var duration = true;
+var addScriptName = false;
 
 /*
   A helper function to clean array reference and type of content
@@ -101,8 +102,12 @@ function Deck( tests ) {
 var exports = {};
 //----------------------------------------------------------------------
 
-var setDuration = exports.setDuration = function( durationBool ) {
+var reportDuration = exports.reportDuration = function( durationBool ) {
   duration = Boolean(durationBool);
+};
+
+var reportScriptName = exports.reportScriptName = function( scriptNameBool ) {
+  addScriptName = Boolean(scriptNameBool);
 };
 
 var deck = exports.deck = new Deck();
@@ -167,7 +172,7 @@ var run = exports.run = function( output ) {
     var s = test.scripts.length;
     while(s--) {
       var scripts = resolveGlob(test.scripts[s]);
-      flatDeck.push({description: test.description, scripts: scripts, targets: test.targets, comparator: test.comparator});
+      flatDeck.push({description: test.description, scripts: scripts, targets: test.targets, comparator: test.comparator, addScriptName: addScriptName});
     };
   };
 

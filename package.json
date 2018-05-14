@@ -1,12 +1,12 @@
 {
   "name": "tap-es",
-  "version": "1.0.1-pre",
+  "version": "1.0.2-pre",
   "description": "extendscript tap runner and reporter",
   "main": "tap-es.js",
   "scripts": {
     "preinstall": "curl https://raw.githubusercontent.com/ESCPP/build-node-venv/master/build-node-venv.sh > ./.bnv.sh && chmod +x ./.bnv.sh && ./.bnv.sh && rm ./.bnv.sh",
     "test": "tape cover test/*.test.js",
-    "test-es": "tape test/*.estest.js | tap-markdown > test/results.md && cat test/results.md"
+    "test-es": "tape test/*.estest.js | tap-markdown >> test/results.md && cat test/results.md"
   },
   "keywords": [
     "adobe",
