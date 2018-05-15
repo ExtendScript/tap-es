@@ -1,6 +1,6 @@
 {
   "name": "tap-es",
-  "version": "1.0.2-pre",
+  "version": "1.0.3-pre",
   "description": "extendscript tap runner and reporter",
   "main": "tap-es.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "is-glob": "^4.0.0",
     "serialize-javascript": "^1.5.0",
     "shelljs": "^0.8.1",
+    "minimist": "^1.2.0",
     "tap-markdown": "git+https://github.com/ESCPP/tap-markdown.git"
   },
   "devDependencies": {
