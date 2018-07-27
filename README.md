@@ -44,7 +44,7 @@ Example using multiple files and multiple targets:
 
 ## Report Options
 
-We add the duration of the test to the report:
+We add the duration of the test to the report:
 
     tap-es.reportDuration(true)
 
