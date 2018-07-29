@@ -1,6 +1,6 @@
 {
   "name": "tap-es",
-  "version": "1.0.4-pre",
+  "version": "1.0.4",
   "description": "extendscript tap runner and reporter",
   "main": "tap-es.js",
   "scripts": {
