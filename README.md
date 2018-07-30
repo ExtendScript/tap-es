@@ -11,7 +11,7 @@ Tap-ExtendScript is a utiliy wrapper arround [estktap](https://github.com/nbqx/e
 
 ## install
 
-    npm install tap-es --save-dev
+    npm install @extendscript/tap-es --save-dev
 
 ## create a test
 
@@ -49,7 +49,7 @@ We add the duration of the test to the report:
 
 and/or add the file name of the test with:
 
-     tap-es.reportScriptName(true)
+    tap-es.reportScriptName(true)
 
 
 ## Running the tests
