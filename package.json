@@ -1,10 +1,10 @@
 {
-  "name": "tap-es",
+  "name": "@extendscript/tap-es",
   "version": "1.0.4",
-  "description": "extendscript tap runner and reporter",
+  "description": "ExtendScript TAP runner and reporter",
   "main": "tap-es.js",
   "scripts": {
-    "buildEnv": "curl https://raw.githubusercontent.com/ESCPP/build-node-venv/master/build-node-venv.sh > ./.bnv.sh && chmod +x ./.bnv.sh && ./.bnv.sh && rm ./.bnv.sh",
+    "buildEnv": "curl https://raw.githubusercontent.com/ES-Collection/build-node-venv/master/build-node-venv.sh > ./.bnv.sh && chmod +x ./.bnv.sh && ./.bnv.sh && rm ./.bnv.sh",
     "prepublishOnly": "npm config set scope extendscript",
     "test": "tape cover test/*.test.js",
     "test-es": "tape test/*.estest.js | tap-markdown >> test/results.md && cat test/results.md"
@@ -34,7 +34,6 @@
     "@extendscripter/tap-markdown": "^1.3.1"
   },
   "devDependencies": {
-    "build-node-venv": "^1.0.3",
     "tape": "^4.9.0",
     "tape-catch": "^1.0.6"
   }
