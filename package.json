@@ -7,7 +7,7 @@
     "buildEnv": "curl https://raw.githubusercontent.com/ES-Collection/build-node-venv/master/build-node-venv.sh > ./.bnv.sh && chmod +x ./.bnv.sh && ./.bnv.sh && rm ./.bnv.sh",
     "prepublishOnly": "npm config set scope extendscript",
     "test": "tape cover test/*.test.js",
-    "test-es": "tape test/*.estest.js | tap-markdown >> test/results.md && cat test/results.md"
+    "test-es": "tape test/*.estest.js | tap-markdown --duration false  > test/results.md && cat test/results.md"
   },
   "keywords": [
     "adobe",

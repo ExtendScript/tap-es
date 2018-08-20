@@ -1,7 +1,8 @@
 var tapes = require("../tap-es.js"); tapes.reset();
-var targets = require("./fixtures/directives.js").indesign;
+var targets = require("./fixtures/directives.js").all;
 var d = require('path').resolve(__dirname);
 
+tapes.reportScriptName(true);
 tapes.reportDuration(false);
 
 // Create Test

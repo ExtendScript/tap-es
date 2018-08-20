@@ -1,7 +1,9 @@
 var tapes = require("../tap-es.js"); tapes.reset();
 var test  = require('tape-catch');
-var targets = require("./fixtures/directives.js").indesign;
+var targets = require("./fixtures/directives.js").all;
 var d = require('path').resolve(__dirname);
+
+var os = require('os');
 
 // Create Test
 //------------
@@ -13,7 +15,7 @@ tapes.add('Add and run test.', [d+'/fixtures/es_test.jsx'], targets, function(r,
 // --------
 tapes.run(d+'/add.test.report.md');
 
-test('run clears/reset tape-es', function (t) {  
+test(os.type() + ' Run clears/reset tape-es', function (t) {  
   t.equal(tapes.get().length, 0);
   t.end();
 });
