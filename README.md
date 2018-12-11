@@ -34,29 +34,29 @@ The `add` function takes three arguments:
 Example using multiple files and multiple targets:
 
     // Generates 4 tests
-    tap-es.add(['test1.jsx','test2.jsx'], [indesign-13,photoshop-18])
+    tapes.add(['test1.jsx','test2.jsx'], [indesign-13,photoshop-18])
 
 [glob](https://github.com/isaacs/node-glob) patterns are supported:
 
-    tap-es.add('test/*.indd.jsx', [indesign-12,indesign-13] )
+    tapes.add('test/*.indd.jsx', [indesign-12,indesign-13] )
 
 
 ## Report Options
 
 We add the duration of the test to the report:
 
-    tap-es.reportDuration(true)
+    tapes.reportDuration(true)
 
 and/or add the file name of the test with:
 
-    tap-es.reportScriptName(true)
+    tapes.reportScriptName(true)
 
 
 ## Running the tests
 
 After having added the tests, we can use the `run()` command to run the tests and pipe the output to file (Markdown) and console:
 
-    tap-es.run( 'result.md' )
+    tapes.run( 'result.md' )
 
 > The run command resets tap-es   
 
