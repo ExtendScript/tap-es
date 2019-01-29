@@ -1,6 +1,6 @@
 {
   "name": "@extendscript/tap-es",
-  "version": "1.0.5",
+  "version": "1.1.5",
   "description": "ExtendScript TAP runner and reporter",
   "main": "tap-es.js",
   "scripts": {

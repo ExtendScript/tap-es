@@ -1,9 +1,6 @@
-var tapes = require("../tap-es.js"); tapes.reset();
+var tapes = require("../tap-es.js").reset().reportScriptName(true).reportDuration(false);
 var targets = require("./fixtures/directives.js").all;
 var d = require('path').resolve(__dirname);
-
-tapes.reportScriptName(true);
-tapes.reportDuration(false);
 
 // Create Test
 //------------

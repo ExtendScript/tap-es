@@ -104,16 +104,19 @@ var exports = {};
 
 var reportDuration = exports.reportDuration = function( durationBool ) {
   duration = Boolean(durationBool);
+  return exports;
 };
 
 var reportScriptName = exports.reportScriptName = function( scriptNameBool ) {
   addScriptName = Boolean(scriptNameBool);
+  return exports;
 };
 
 var deck = exports.deck = new Deck();
 
 var reset = exports.reset = function() {
   deck.reset();
+  return exports;
 };
 
 /*
